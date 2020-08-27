@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-
+<head>
+    <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
+</head>
 <body>
     <h1>Dice Simulator!</h1>
     <p>Press the button to roll the dice.</p>
     <button onclick="diceFunction()">Roll Dice</button>
-    <h2 id='number'></h2>
-    <p id="previousRoll"></p>
+    <h3 id='number'></h3>
+    <br>
+    <br>
+    <h2>Dice Statistics:</h2>
+    <h2 id='previousRoll'></h2>
+    <div id="container" style="width: 80%; height: 80%"></div>
 </body>
 
 <script>
@@ -17,11 +23,49 @@
 
     let diceFunction = () => {
         let randomNumber = Math.floor(Math.random() *36);
-        let previousRoll = [];
         let roll = dice[randomNumber];
-        previousRoll.push(roll);
+        previousRoll.push(" " + roll + " ");
+        document.getElementById("previousRoll").innerHTML = previousRoll;
         return document.getElementById("number").innerHTML = roll;
     }
+
+
+     anychart.onDocumentReady(function() {
+        const data = {
+        header: ["Number", "# of Rolls"],
+        rows: [
+            ["Two", previousRoll.length],
+            ["Three", 10],
+            ["Four", 3],
+            ["Five", 4],
+            ["Six", 5],
+            ["Seven", 6],
+            ["Eight", 8],
+            ["Nine", 3],
+            ["Ten", 4],
+            ["Eleven", 5],
+            ["Twelve", 6],
+        ]};
+
+    let chart = anychart.column();
+
+    chart.data(data);
+
+    chart.title("Dice Rolls");
+
+    chart.container("container");
+
+    chart.draw();
+
+
+    });
+
+    
+
+
+    
+    
+    
     
 </script>
 </html>
