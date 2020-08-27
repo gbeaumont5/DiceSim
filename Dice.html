@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<body>
+    <h1>Dice Simulator!</h1>
+    <p>Press the button to roll the dice.</p>
+    <button onclick="diceFunction()">Roll Dice</button>
+    <h2 id='number'></h2>
+    <p id="previousRoll"></p>
+</body>
+
+<script>
+    let dice = [2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 11, 11, 12];
+    
+    let randomNumber = Math.floor(Math.random() *36);
+    let previousRoll = [];
+
+
+    let diceFunction = () => {
+        let randomNumber = Math.floor(Math.random() *36);
+        let previousRoll = [];
+        let roll = dice[randomNumber];
+        previousRoll.push(roll);
+        return document.getElementById("number").innerHTML = roll;
+    }
+    
+</script>
+</html>
